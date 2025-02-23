@@ -74,14 +74,14 @@
         min-height: 100vh;
         flex-direction: column;
         position: relative;
-        padding-top: 50px;
+        padding-top: 500px;
     }
     .envelope-container {
     position: relative;
     width: 300px;
     height: 200px;
     cursor: pointer;
-    background: linear-gradient(to bottom, #c9ad6e, #FFB07B); /* Ajuste de paleta */
+    background: linear-gradient(to bottom, #c9ad6e, #FFB07B);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -252,9 +252,15 @@
     .photo {
         max-height: 280px;
     }
+    .e-container{
+        padding-top: 50px;
+    }
 }
 
 @media (max-width: 400px) {
+    .e-container{
+        padding-top: 50px;
+    }
     .envelope-container {
         width: 220px;
         height: 140px;
