@@ -474,6 +474,8 @@ select, input {
             <br><br>
             <p id="countdown"></p>
             <br><br>
+            <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=MjdzNW9jNWtkdHMwODZzMTY2aThpNTJ0MGcgajEwMDYxMDYwNzBtQG0&amp;tmsrc=j1006106070m%40gmail.com"><img border="0" src="https://calendar.google.com/calendar/images/ext/gc_button1_en.gif" alt="Google Calendar"></a>
+            <br><br>
             <button class="btn" onclick="openPopup()">Confirmar asistencia</button>
         </div>
     </div>
@@ -628,34 +630,7 @@ function showSlides() {
   slides[slideIndex-1].style.display = "block";
   setTimeout(showSlides, 5000); // Change image every 2 seconds
 }
-/*
-let slideIndex = 1;
-showSlides(slideIndex);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
-*/
 function startCountdown() {
     const targetDate = new Date("December 14, 2025 00:00:00").getTime();
 
