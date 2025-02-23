@@ -202,19 +202,20 @@
         font-size: 16px;
         padding: 15px;
     }
+
     .container {
-    padding-top: 40px; /* Ajusta según lo necesites */
-    text-align: center; /* Centra el contenido */
-}
+        padding-top: 40px; /* Ajusta según lo necesites */
+        text-align: center; /* Centra el contenido */
+    }
 
     .photo {
-        height: 500px;
+        width: 100%; /* Asegura que la imagen se adapte al ancho del contenedor */
         max-width: 100%;
-        max-height: 600px;
-        object-fit: contain;
-        margin: 400px auto; /* Agrega espacio arriba y centra horizontalmente */
+        height: auto; /* Mantiene la proporción de la imagen */
+        object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+        margin: 20px auto; /* Reduce el espacio excesivo */
         border-radius: 10px; /* Suaviza las esquinas */
-}
+        display: block;
     }
 
     .btn {
@@ -229,6 +230,7 @@
         width: 220px;
         height: 140px;
     }
+
     .letter {
         font-size: 16px;
     }
