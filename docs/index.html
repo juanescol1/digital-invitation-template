@@ -90,6 +90,9 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease-in-out;
 }
+.envelope-container:active {
+    transform: scale(0.95);
+}
 
     .flap {
     position: absolute;
@@ -370,6 +373,11 @@
   from {opacity: .4}
   to {opacity: 1}
 }
+.clicked {
+    transform: scale(0.92);
+    transition: transform 0.15s ease;
+}
+
         </style>
 </head>
 <body>
@@ -507,6 +515,7 @@
     envelope.classList.add('show');
     invitation.classList.add('hidden');
     envelope.classList.remove('hidden');
+    envelope.classList.add("clicked");
     setTimeout(() => {
         envelope.classList.add('hidden'); // Oculta el sobre
         evelop_.classList.add('hidden'); // Oculta el sobre
