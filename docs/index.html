@@ -14,6 +14,14 @@
     font-variation-settings:
         "wdth" 100;
     }
+    #countdown {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    color: #e74c3c;
+}
+
     body {
         font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;            
         text-align: center;
@@ -47,13 +55,13 @@
         bottom: 10%;
         right: 5%;
     }
-.body {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to bottom, #D72638, #F49D37);
-    border-radius: 12px;
-}
+    .body {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to bottom, #D72638, #F49D37);
+        border-radius: 12px;
+    }
 
     .hidden { display: none; }
     .popup {
@@ -81,7 +89,7 @@
     width: 300px;
     height: 200px;
     cursor: pointer;
-    background: linear-gradient(to bottom, #c9ad6e, #FFB07B);
+    background: #c0392b;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -93,88 +101,89 @@
 .envelope-container:active {
     transform: scale(0.95);
 }
-
-    .flap {
+.flap {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 50%;
+background: #e74c3c; 
+border-radius: 10px 10px 0 0;
+transform-origin: top;
+transition: transform 0.5s ease-in-out;
+clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.letter {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: #c9ad6e; /* Color de la solapa */
-    border-radius: 10px 10px 0 0;
-    transform-origin: top;
-    transition: transform 0.5s ease-in-out;
-    }
-    .letter {
-        position: absolute;
-        bottom: 10px;
-        left: 50%;
-        width: 90%;
-        height: 120%;
-        background: white;
-        border-radius: 5px;
-        transform: translateX(-50%) translateY(100%);
-        transition: transform 0.5s ease-in-out 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    bottom: 10px;
+    left: 50%;
+    width: 90%;
+    height: 120%;
+    background: white;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #5D4037;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px;
+}
+.show .flap {
+transform: rotateX(180deg);
+}
+.show .letter {
+    transform: translateX(-50%) translateY(0);
+}
+.invitation {
+    max-width: 350px;
+    width: 90%;
+    height:auto;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    font-family: 'Arial', Verdana, Geneva, Tahoma, sans-serif;
+}
+.invitation.show {
+    opacity: 1;
+    visibility: visible;
+}
+.btn {
+    background-color: #c9ad6e;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btn:hover { background: #f3e9cb; }
+h1, h2, h3 {
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+    color: #000000;
+    text-align: center;
+}
+select, input {
+    border: 1px solid #C08552;
+    padding: 8px;
+    border-radius: 6px;
+}
+.invitation p {
         font-size: 18px;
         color: #5D4037;
-        font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
-        padding: 10px;
     }
-    .show .flap {
-    transform: rotateX(180deg);
-    }
-        .show .letter {
-            transform: translateX(-50%) translateY(0);
-        }
-        .invitation {
-            max-width: 350px;
-            width: 90%;
-            height:auto;
-            background-color: rgb(255, 255, 255);
-            text-align: center;
-            padding: 20px;
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.6);
-            font-family: 'Arial', Verdana, Geneva, Tahoma, sans-serif;
-        }
-        .invitation.show {
-            opacity: 1;
-            visibility: visible;
-        }
-            .btn {
-            background-color: #c9ad6e;
-            color: rgb(0, 0, 0);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .btn:hover { background: #f3e9cb; }
-        h1, h2, h3 {
-            font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
-            color: #000000;
-            text-align: center;
-        }
-        select, input {
-            border: 1px solid #C08552;
-            padding: 8px;
-            border-radius: 6px;
-        }
-        .invitation p {
-                font-size: 18px;
-                color: #5D4037;
-            }
     .photo {
         max-width: 450px;
         width: 100%;
@@ -206,6 +215,8 @@
     .invitation {
         font-size: 16px;
         padding: 15px;
+        top: 85%;
+        left: 50%;
     }
 
     .container {
@@ -275,6 +286,8 @@
 
     .invitation {
         font-size: 14px;
+        top: 85%;
+        left: 50%;
     }
 }
     .envelope-container {
@@ -459,6 +472,8 @@
                 Para garantizar que todos disfruten plenamente de este momento especial, agradecemos su comprensión en que el evento será exclusivamente para adultos. ¡Gracias por su apoyo y cariño!
             </p>
             <br><br>
+            <p id="countdown"></p>
+            <br><br>
             <button class="btn" onclick="openPopup()">Confirmar asistencia</button>
         </div>
     </div>
@@ -476,6 +491,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
         cargarInvitados(); // Cargar la lista de invitados al cargar la página
+        startCountdown();
     });
         function openPopup() {
             document.getElementById("popup").classList.remove("hidden");
@@ -500,6 +516,31 @@
     })
     .catch(error => console.error("Error al cargar invitados:", error));
     }
+    function openInvitation_() {
+    let flap = document.querySelector(".flap");
+    let letter = document.querySelector(".letter");
+    let envelope = document.querySelector(".envelope-container");
+    let envelope_ = document.querySelector('.e-container');
+    let invitation = document.querySelector('.invitation');
+    envelope.classList.add('show');
+    invitation.classList.add('hidden');
+    envelope.classList.remove('hidden');
+    envelope.classList.add("clicked");
+    // Abre la tapa del sobre
+    flap.style.transform = "rotateX(180deg)";
+
+    // Muestra la carta con efecto de deslizamiento
+    setTimeout(() => {
+        letter.style.opacity = "1";
+        letter.style.transform = "translate(-50%, 0)";
+    }, 500);
+
+    // Opcional: Ocultar el sobre después de abrir
+    setTimeout(() => {
+        envelope.style.display = "none";
+    }, 2000);
+}
+
     function openInvitation() {
         /*
          <div class="e-container hidden">
@@ -615,6 +656,31 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 */
+function startCountdown() {
+    const targetDate = new Date("December 14, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+            document.getElementById("countdown").innerHTML = "¡Llegó el gran día! 🎉";
+            clearInterval(countdownInterval);
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+            `⏳ Faltan: ${days} días, ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+}
     </script>
 </body>
 </html>
