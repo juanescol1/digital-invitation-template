@@ -4,706 +4,865 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invitación de Boda - Catalina & Juan</title>
-        <style>
-                /* Estilo del modal */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    /* Contenedor del contenido del modal */
-    .modal-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        position: relative;
-        text-align: center;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-    /* Imagen del QR */
-    #qrImage {
-        max-width: 400px;
-        height: 400px;
-        border-radius: 10px;
-    }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    /* Botón de cerrar */
-    .close {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    /* Botón de descarga */
-    .download-btn {
-        margin-top: 15px;
-        padding: 10px 20px;
-        background-color: #3498db;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-    .download-btn:hover {
-        background-color: #2980b9;
-    }
-
-            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
-            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-    .roboto-google {
-    font-family: "Roboto", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-variation-settings:
-        "wdth" 100;
-    }
-    #countdown {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-    color: #e74c3c;
-}
-
-    body {
-        font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;            
-        text-align: center;
-        margin: 0;
-        padding: 20px;
-        background-color: #FFF5E1;
-        background-image: url("https://img.freepik.com/free-vector/royal-frame-with-golden-floral-invitation-card-design_1017-39909.jpg");
-        color: #c9ad6e;
-        overflow: auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        min-height: 100vh;
-    }
-
-    body::before, body::after {
-        content: "";
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        background: url('https://www.transparenttextures.com/patterns/vintage-floral.png'); /* Patrón de flores */
-        opacity: 0.2;
-        z-index: -1;
-    }
-    
-    body::before {
-        top: 10%;
-        left: 5%;
-    }
-
-    body::after {
-        bottom: 10%;
-        right: 5%;
-    }
-    .body {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-image: linear-gradient(to bottom, #D72638, #F49D37);
-        border-radius: 12px;
-    }
-
-    .hidden { display: none; }
-    .popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    .e-container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 100vh;
-        min-height: 100vh;
-        flex-direction: column;
-        position: relative;
-        padding-top: 500px;
-    }
-    .envelope-container {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    cursor: pointer;
-    background: #c0392b;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out;
-}
-.envelope-container:active {
-    transform: scale(0.95);
-}
-.flap {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 50%;
-background: #e74c3c; 
-border-radius: 10px 10px 0 0;
-transform-origin: top;
-transition: transform 0.5s ease-in-out;
-clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
-.letter {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    width: 90%;
-    height: 120%;
-    background: white;
-    border-radius: 5px;
-    opacity: 0;
-    transform: translate(-50%, 20px);
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: #5D4037;
-    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
-    padding: 10px;
-}
-.show .flap {
-transform: rotateX(180deg);
-}
-.show .letter {
-    transform: translateX(-50%) translateY(0);
-}
-.invitation {
-    max-width: 350px;
-    width: 90%;
-    height:auto;
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 20px;
-    position: absolute;
-    top: 85%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.6);
-    font-family: 'Arial', Verdana, Geneva, Tahoma, sans-serif;
-}
-.invitation.show {
-    opacity: 1;
-    visibility: visible;
-}
-.btn {
-    background-color: #c9ad6e;
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-.btn:hover { background: #f3e9cb; }
-h1, h2, h3 {
-    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
-    color: #000000;
-    text-align: center;
-}
-select, input {
-    border: 1px solid #C08552;
-    padding: 8px;
-    border-radius: 6px;
-}
-.invitation p {
-        font-size: 18px;
-        color: #5D4037;
-    }
-    .photo {
-        max-width: 450px;
-        width: 100%;
-        object-fit: contain;
-        height: 300px;
-        overflow: hidden;
-        position: relative;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        object-fit: cover; /* Ajusta la imagen sin distorsión */
-        display: block; /* Evita espacios extra */
-        max-height: 350px;
-    }
-        .popup select, .popup input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+    <style>
+        /* --- Nota Solo Adultos --- */
+        .no-children-note {
+            text-align: center;
+            margin-top: 30px; /* Espacio superior */
+            padding: 0 20px; /* Padding lateral */
         }
-    .envelope-container:hover {
-    transform: scale(1.05);
-    }
-    @media (max-width: 600px) {
-    .envelope-container {
-        width: 250px;
-        height: 160px;
-    }
+        .no-children-note p {
+            font-size: 0.95em; /* Un poco más pequeño */
+            color: var(--grey-text); /* Color gris sutil */
+            font-style: italic; /* Estilo cursiva */
+            background-color: var(--light-blue-bg); /* Fondo muy claro para diferenciar */
+            padding: 10px 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--medium-blue); /* Borde izquierdo distintivo */
+            display: inline-block; /* Para que el fondo se ajuste al texto */
+            max-width: 90%; /* Evitar que ocupe todo el ancho */
+        }
+        .no-children-note i {
+            margin-right: 8px; /* Espacio después del icono */
+            color: var(--medium-blue); /* Color del icono */
+        }
+         .no-children-note hr {
+             margin-bottom: 30px; /* Espacio debajo del separador */
+         }
+        /* --- Variables de Color --- */
+        :root {
+            --dark-blue: #0A2342; /* Azul oscuro principal */
+            --dark-mid-blue: #002254; /* Azul oscuro principal */
+            --medium-blue: #2C6E9E; /* Azul medio para acentos/botones */
+            --light-blue-bg: #E0E8F0; /* Azul muy claro para fondos alternativos */
+            --white: #FFFFFF;
+            --text-on-dark: #FFFFFF;
+            --text-on-light: #0A2342;
+            --modal-bg: rgba(10, 35, 66, 0.85); /* Fondo modal semitransparente azul oscuro */
+            --grey-text: #555;
+        }
 
-    .invitation {
-        font-size: 16px;
-        padding: 15px;
-        top: 85%;
-        left: 50%;
-    }
+        /* --- Estilos Generales --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-        padding-top: 500px;
-        text-align: center;
+        body {
+            font-family: 'Lato', Verdana, sans-serif;
+            background-color: var(--light-blue-bg); /* Fondo general claro */
+            color: var(--text-on-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Evitar scroll horizontal */
+        }
+        @keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 15px rgba(44, 110, 158, 0.4); /* Brillo inicial más sutil */
     }
-
-    .photo {
-        width: 100%;
-        max-width: 100%;
-        height: 350px; 
-        object-fit: cover; 
-        margin: 20px auto;
-        border-radius: 10px;
-        display: block;
+    50% {
+        box-shadow: 0 0 30px rgba(44, 110, 158, 0.8); /* Brillo máximo */
     }
-    .slideshow {
-    position: relative;
-    width: 100%; /* 3 imágenes, 100% cada una */
-    height: 100%;
-    transition: transform 1s ease-in-out;
+    100% {
+        box-shadow: 0 0 15px rgba(44, 110, 158, 0.4); /* Vuelve al brillo inicial */
+    }
 }
+        /* Contenedor principal de la tarjeta */
+        .invitation-card {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: var(--white);
+            border-radius: 15px;
+            animation: pulse-glow 3s infinite alternate; /* Aplica la animación: nombre, duración, repetición infinita, alternar dirección */
+            box-shadow: 0 10px 30px rgba(10, 35, 66, 0.2);
+            overflow: hidden; /* Para contener bordes redondeados */
+            padding: 0; /* Sin padding aquí, se añade en secciones */
+        }
 
-.slide {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
+        /* Encabezado con nombres */
+        .header {
+            background-color: var(--dark-blue);
+            color: var(--text-on-dark);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Contenido principal */
+        .content {
+            padding: 30px;
+        }
+
+        h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+        h2 { font-size: 1.8em; margin-top: 20px; }
+        h3 { font-size: 1.4em; margin-top: 15px; }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--grey-text);
+            text-align: center; /* Centrar párrafos por defecto */
+        }
+
+        p.info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centrar items */
+            gap: 10px; /* Espacio entre icono y texto */
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        p.info-item i {
+            color: var(--medium-blue);
+            width: 20px; /* Ancho fijo para iconos */
+            text-align: center;
+        }
+        p.info-item a {
+            color: var(--medium-blue);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        p.info-item a:hover {
+            color: var(--dark-blue);
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: var(--light-blue-bg);
+            margin: 30px 0;
+        }
+
+        /* --- Slideshow --- */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            height: 400px; /* Altura ajustada */
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .mySlides {
+            display: none;
+            height: 100%;
+        }
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @keyframes fade {
+            from { opacity: .4 }
+            to { opacity: 1 }
+        }
+
+        /* --- Cuenta Regresiva --- */
+        #countdown {
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+            margin: 30px 0;
+            color: var(--dark-blue);
+            background-color: var(--light-blue-bg);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Lato', sans-serif;
+        }
+        #countdown i {
+            margin-right: 8px;
+            color: var(--medium-blue);
+        }
+
+        /* --- Lluvia de Sobres --- */
+        .gift-section {
+            text-align: center;
+        }
+        .gift-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Espacio entre iconos */
+            margin-top: 20px;
+            flex-wrap: wrap; /* Para móviles */
+        }
+        .gift-icon-container {
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+        .gift-icon-container:hover {
+            transform: scale(1.1);
+        }
+        .gift-icon-container i {
+            font-size: 2.5em; /* Iconos más grandes */
+            color: var(--medium-blue);
+            margin-bottom: 5px;
+            display: block; /* Para que el texto quede debajo */
+        }
+        .gift-icon-container span {
+            font-size: 0.9em;
+            color: var(--grey-text);
+            display: block;
+        }
+
+        /* --- Dress Code --- */
+        .dress-code-section {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-blue-bg);
+            border-radius: 8px;
+        }
+        .dress-code-section p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: var(--dark-blue);
+        }
+        .dress-code-section strong {
+             font-family: 'Cormorant Garamond', serif;
+             font-size: 1.3em;
+             display: block;
+             margin-bottom: 10px;
+        }
+        .color-restriction {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .color-circle {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid var(--grey-text);
+            position: relative; /* Para la línea */
+        }
+        .color-circle.blue { background-color: var(--dark-mid-blue); }
+        .color-circle.white { background-color: var(--white); }
+
+        /* Línea roja cruzada */
+        .color-circle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10%;
+            width: 120%;
+            height: 2px;
+            background-color: red;
+            transform: translateY(-50%) rotate(-45deg);
+            transform-origin: center;
+        }
+
+        .tie-restriction {
+            margin-top: 15px;
+            font-style: italic;
+            color: var(--grey-text);
+        }
+         .tie-restriction i {
+             margin-right: 5px;
+             color: red;
+         }
+
+        /* --- Confirmación Asistencia --- */
+        .confirmation-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .btn {
+            background-color: var(--medium-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.1em; /* Tamaño ajustado */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            font-family: 'Lato', sans-serif;
+            margin: 10px 5px; /* Espacio */
+            display: inline-block; /* Permitir que estén en línea */
+        }
+        .btn:hover {
+            background-color: var(--dark-blue);
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+         /* Botón Google Calendar */
+        .gcal-button {
+            display: inline-block; /* Alinear con otros botones si es necesario */
+            margin-top: 10px;
+        }
+        .gcal-button img {
+            transition: transform 0.2s ease;
+            vertical-align: middle; /* Alinear imagen */
+        }
+        .gcal-button:hover img {
+            transform: scale(1.05);
+        }
+
+
+        /* --- Popup Confirmación Asistencia --- */
+        .popup {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            color: var(--text-on-light);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(10, 35, 66, 0.4);
+            z-index: 1100;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+        .popup h3 {
+            color: var(--dark-blue);
+            margin-top: 0;
+            margin-bottom: 20px; /* Más espacio */
+        }
+        .popup select {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0 25px 0; /* Más espacio inferior */
+            border: 1px solid var(--medium-blue);
+            border-radius: 6px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1em;
+            background-color: var(--light-blue-bg);
+            color: var(--dark-blue);
+            cursor: pointer;
+        }
+        .popup select:focus {
+            outline: none;
+            border-color: var(--dark-blue);
+            box-shadow: 0 0 5px rgba(44, 110, 158, 0.5);
+        }
+        .popup .btn-group {
+             margin-top: 15px;
+         }
+        .popup .btn.close-btn { /* Botón cerrar específico */
+            background-color: var(--grey-text);
+        }
+        .popup .btn.close-btn:hover {
+            background-color: #333; /* Gris más oscuro */
+        }
+
+
+        /* --- Modal General (para QR y Cuenta) --- */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-bg);
+            overflow: auto; /* Permitir scroll si el contenido es largo */
+            padding-top: 60px; /* Espacio superior */
+            align-items: center; /* Centrado vertical con flex (alternativa a padding) */
+            justify-content: center; /* Centrado horizontal con flex */
+        }
+        .modal-content {
+            background-color: var(--white);
+            color: var(--text-on-light);
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            text-align: center;
+            max-width: 90%;
+            width: auto; /* Ajustar al contenido */
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        .close { /* Botón cerrar modal */
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: var(--grey-text);
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+        .close:hover {
+            color: var(--dark-blue);
+        }
+        .modal h3 { /* Título dentro del modal */
+             margin-bottom: 25px;
+             color: var(--dark-blue);
+        }
+
+        /* Contenido específico Modal QR */
+        .modal-qr img {
+            max-width: 100%; /* Ajustar al contenedor */
+            height: auto;
+            max-height: 60vh; /* Limitar altura máxima */
+            border-radius: 10px;
+            display: block;
+            margin: 10px auto 20px auto; /* Espaciado */
+        }
+        .modal-qr .download-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--medium-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .modal-qr .download-link:hover {
+            color: var(--dark-blue);
+        }
+         .modal-qr .download-link i {
+             margin-right: 5px;
+         }
+
+        /* Contenido específico Modal Cuenta */
+        .modal-account .account-info {
+            background-color: var(--light-blue-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: var(--dark-blue);
+            display: flex; /* Para alinear número y botón */
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Para pantallas pequeñas */
+            gap: 10px;
+        }
+        .modal-account .account-info span#accountNumber {
+            font-weight: bold;
+            word-break: break-all; /* Evitar overflow del número */
+        }
+        .modal-account .btn.copy-btn {
+            font-size: 0.9em; /* Botón copiar más pequeño */
+            padding: 8px 15px;
+            background-color: var(--dark-blue); /* Diferenciar botón copiar */
+        }
+        .modal-account .btn.copy-btn:hover {
+            background-color: var(--medium-blue);
+        }
+        .modal-account .copy-feedback {
+             font-size: 0.9em;
+             color: green;
+             margin-top: 10px;
+             height: 1em; /* Reservar espacio para evitar saltos */
+        }
+
+        /* --- Footer (Opcional) --- */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: var(--grey-text);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .light-blob {
+        width: 80vh; /* Hazlos un poco más grandes en pantallas pequeñas */
+        height: 80vh;
+        filter: blur(80px); /* Ajusta el desenfoque */
+    }
+            .invitation-card {
+                margin: 20px 10px; /* Menos margen en móviles */
+            }
+            .header h1 { font-size: 2.5em; }
+            .header p { font-size: 1.1em; }
+            .content { padding: 20px; }
+            h2 { font-size: 1.6em; }
+            h3 { font-size: 1.3em; }
+            p.info-item { font-size: 1em; }
+            .slideshow-container { height: 300px; }
+            #countdown { font-size: 1.1em; padding: 10px; }
+            .gift-icons { gap: 20px; }
+            .gift-icon-container i { font-size: 2em; }
+            .btn { font-size: 1em; padding: 10px 20px; }
+            .modal-content { padding: 20px; }
+            .modal-account .account-info { font-size: 1em; }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 { font-size: 2em; }
+            .header p { font-size: 1em; }
+            .slideshow-container { height: 250px; }
+            #countdown { font-size: 1em; }
+            .gift-icon-container { width: 35%; /* 2 iconos por fila aprox */ }
+            .btn { display: block; width: 90%; margin: 10px auto; } /* Botones en bloque */
+            .gcal-button { display: block; width: 90%; margin: 10px auto; text-align: center; }
+            .modal-account .account-info { flex-direction: column; align-items: center; }
+            .popup { padding: 20px; }
+        }
+
+        /* --- Efecto de Luces en Movimiento --- */
+.background-lights {
+    position: fixed; /* Fija el fondo a la ventana del navegador */
     top: 0;
     left: 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-.slide.active {
-    opacity: 1;
-}
-
-    .btn {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-}
-@media screen and (max-width: 430px) and (max-height: 932px) {
-    body {
-        background-size: contain !important;
-    }
-    .photo {
-        max-height: 280px;
-    }
-    .e-container{
-        padding-top: 50px;
-    }
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Oculta cualquier parte de las 'luces' que se salga de la pantalla */
+    z-index: -1; /* Asegura que esté detrás de la tarjeta de invitación */
+    pointer-events: none; /* Permite que los clics pasen a los elementos debajo */
+    background-color: var(--light-blue-bg); /* Usa el color de fondo claro de tu paleta */
 }
 
-@media (max-width: 400px) {
-    .e-container{
-        padding-top: 50px;
-    }
-    .envelope-container {
-        width: 220px;
-        height: 140px;
-    }
-
-    .letter {
-        font-size: 16px;
-    }
-
-    .invitation {
-        font-size: 14px;
-        top: 85%;
-        left: 50%;
-    }
-}
-    .envelope-container {
-        width: 280px;
-        height: 190px;
-    }
-    a.maps-link {
-        text-decoration: none; /* Quita el subrayado */
-        color: #b88a44; /* Color dorado elegante */
-        font-weight: bold;
-        font-size: 18px;
-        transition: color 0.3s ease-in-out;
-    }
-
-    a.maps-link:hover {
-        color: #d4a373;
-        text-shadow: 1px 1px 4px rgba(180, 130, 80, 0.5);
-    }
-    /* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+.light-blob {
+    position: absolute; /* Permite posicionar los elementos libremente dentro de .background-lights */
+    width: 60vh; /* Tamaño grande relativo a la altura de la ventana */
+    height: 60vh; /* Mismo tamaño para que sean circulares */
+    border-radius: 50%; /* Forma circular */
+    filter: blur(100px); /* Muy desenfocado para parecer un brillo suave */
+    opacity: 0.5; /* Semi-transparente */
+    /* Puedes ajustar width, height, filter y opacity para cambiar el tamaño y suavidad */
 }
 
-.mySlides {
-  display: none;
+/* Colores y posiciones iniciales para cada 'luz' */
+.light-blob-1 {
+    background-color: rgba(44, 110, 158, 0.7); /* Usa --medium-blue con opacidad */
+    top: -20%; /* Posición inicial fuera de la vista */
+    left: -20%;
+    animation: move-light-1 25s infinite alternate ease-in-out; /* Aplica animación */
 }
 
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+.light-blob-2 {
+    background-color: rgba(10, 35, 66, 0.6); /* Usa --dark-blue con opacidad */
+    bottom: -20%; /* Posición inicial fuera de la vista */
+    right: -20%;
+    animation: move-light-2 30s infinite alternate ease-in-out; /* Aplica animación */
 }
 
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+.light-blob-3 {
+    background-color: rgba(224, 232, 240, 0.8); /* Usa --light-blue-bg con opacidad */
+    top: 50%; /* Posición inicial en el centro */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el elemento basado en su propio tamaño */
+    animation: move-light-3 20s infinite alternate ease-in-out; /* Aplica animación */
 }
 
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+/* Definición de las animaciones de movimiento */
+@keyframes move-light-1 {
+    0% { top: -20%; left: -20%; }
+    50% { top: 80%; left: 70%; } /* Se mueve hacia abajo y derecha */
+    100% { top: -20%; left: -20%; } /* Vuelve a la posición inicial */
 }
 
-.text {
-  color: #00023f;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+@keyframes move-light-2 {
+    0% { bottom: -20%; right: -20%; }
+    50% { bottom: 60%; right: 80%; } /* Se mueve hacia arriba y izquierda */
+    100% { bottom: -20%; right: -20%; } /* Vuelve a la posición inicial */
 }
 
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #5e0000;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+@keyframes move-light-3 {
+    0% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1); }
+    40% { top: 20%; left: 30%; transform: translate(-50%, -50%) scale(1.1); } /* Se mueve y se agranda un poco */
+    80% { top: 70%; left: 60%; transform: translate(-50%, -50%) scale(0.9); } /* Se mueve y se encoge un poco */
+    100% { top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1); } /* Vuelve a la posición y tamaño inicial */
 }
 
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-.clicked {
-    transform: scale(0.92);
-    transition: transform 0.15s ease;
-}
-/* Contenedor de la imagen y el icono */
-.qr-container {
-    display: flex;
-    align-items: center; /* Alinea el icono y la imagen verticalmente */
-    gap: 10px; /* Espacio entre el icono y la imagen */
-}
-
-/* Estilos del icono de descarga */
-#downloadQR svg {
-    cursor: pointer;
-    color: #3498db; /* Azul */
-    transition: color 0.3s ease;
-}
-
-#downloadQR svg:hover {
-    color: #2980b9; /* Azul más oscuro */
-}
-
-        </style>
+    </style>
 </head>
 <body>
-    <div class="e-container hidden">
-        <div class="envelope-container hidden" id="opening-card" onclick="openInvitation()">
-            <div class="flap"></div>
-            <div class="body"></div>
+    <div class="background-lights">
+        <div class="light-blob light-blob-1"></div>
+        <div class="light-blob light-blob-2"></div>
+        <div class="light-blob light-blob-3"></div>
         </div>
-    </div>
-    <div class="invitation hidden" id="invitation">
-        <div class="container">
-            <div class="photo">
-                <div class="slideshow-container">
 
-                    <!-- Full-width images with number and caption text -->
-                    <div class="mySlides fade">
-                      <div class="numbertext">1 / 5</div>
-                      <img src="https://i.postimg.cc/fbgPkcCf/compromiso.jpg" style="width:100%">
-                      <div class="text"></div>
-                    </div>
-                  
-                    <div class="mySlides fade">
-                      <div class="numbertext">2 / 5</div>
-                      <img src="https://i.postimg.cc/tCCFvKp7/patines.jpg" style="width:100%">
-                      <div class="text"></div>
-                    </div>
-                  
-                    <div class="mySlides fade">
-                      <div class="numbertext">3 / 5</div>
-                      <img src="https://i.postimg.cc/26VPxcyt/02SAI.jpg" style="width:100%">
-                      <div class="text"></div>
-                    </div>
-                    
-                    <div class="mySlides fade">
-                      <div class="numbertext">4 / 5</div>
-                      <img src="https://i.postimg.cc/Y9Wd9Jht/4.jpg" style="width:100%">
-                      <div class="text"></div>
-                    </div>
-                    
-                    <div class="mySlides fade">
-                      <div class="numbertext">5 / 5</div>
-                      <img src="https://i.postimg.cc/CMC4QC8r/collage.jpg" style="width:100%">
-                      <div class="text"></div>
-                    </div>
-                    <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-                  </div>
-                  <br>
-                  
-                  <div style="text-align:center">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                  </div>
+    <div class="invitation-card">
+        <header class="header">
+            <h1>Catalina & Juan</h1>
+            <p>¡Nos casamos!</p>
+        </header>
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="https://i.postimg.cc/fbgPkcCf/compromiso.jpg" alt="Foto Novios 1">
             </div>
-            <h1>
-                Catalina & Juan</h1>
-            <p>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-through-heart-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5 0 0 1 2 11.5h1.793l3.103-3.104a.5.5 0 1 1 .708.708L4.5 12.207V14a.5.5 0 0 1-.146.354zM16 3.5a.5.5 0 0 1-.854.354L14 2.707l-1.006 1.006c.236.248.44.531.6.845.562 1.096.585 2.517-.213 4.092-.793 1.563-2.395 3.288-5.105 5.08L8 13.912l-.276-.182A24 24 0 0 1 5.8 12.323L8.31 9.81a1.5 1.5 0 0 0-2.122-2.122L3.657 10.22a9 9 0 0 1-1.039-1.57c-.798-1.576-.775-2.997-.213-4.093C3.426 2.565 6.18 1.809 8 3.233c1.25-.98 2.944-.928 4.212-.152L13.292 2 12.147.854A.5.5 0 0 1 12.5 0h3a.5.5 0 0 1 .5.5z"/>
-                  </svg>
-                ¡Nos casamos!</p>
-            <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16">
-                    <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
-                  </svg>
-                <strong>Fecha:</strong> 14 de diciembre de 2025</p>
-            <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
-                    <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584l.013-.012.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354-.012.012A6.97 6.97 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0"/>
-                  </svg>
-                <strong>Hora:</strong> 10:00 AM</p>
-            <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-                  </svg>
-                <strong>Lugar:</strong> <a class="maps-link" href="https://maps.app.goo.gl/6RBhuhaAkg3Sh9jr5">Iglesia Nuestra Señora de Fátima</a></p>
-            <h3>Lluvia de sobres</h3>
-            <img src="data:image/png;base64,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" alt="Davivienda" width="33.333333">
-            <img src="data:image/png;base64,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" alt="aBancolombia" width="33.333333" id="openModal">
-            <img src="data:image/png;base64,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" alt="Efectivo" width="33.333333">
-            <p>
-                <svg width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="655.359" height="655.359" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;fill-rule:evenodd;clip-rule:evenodd" viewBox="0 0 6.827 6.827"><defs><style>.fil1{fill:#fffffe;fill-rule:nonzero}</style></defs><path style="fill:#424242" d="M0 0h6.827v6.827H0z"/><g id="Layer_x0020_1"><g id="_399195248"><path id="_399195992" class="fil1" d="M5.313 2.062c.153.347.22.664.104 1.039a1.055 1.055 0 0 1-.577.667 1.054 1.054 0 0 1-.881-.025c-.393-.184-.582-.481-.723-.858l2.077-.823zm-.073.177c-.675.298-1.147.485-1.841.73.233.5.815.872 1.361.631.52-.229.656-.86.48-1.36z"/><path id="_399196184" class="fil1" d="m4.89 3.64.739 1.677-.177.078-.74-1.677z"/><path id="_399196136" class="fil1" d="M5.2 5.4a.097.097 0 0 0 .079.177l.6-.264a.097.097 0 0 0-.078-.178l-.6.265z"/><path id="_399195968" class="fil1" d="M3.657 3.381c.538-.004.846-.173 1.063-.354.173-.145.34-.285.636-.345l.038.19c-.317.688-.428 1.077-1.653.722l-.084-.213z"/><g><path id="_399196424" class="fil1" d="M1.514 1.241c-.153.347-.22.664-.104 1.039.091.296.29.541.576.667s.602.107.882-.024c.392-.185.582-.482.723-.859l-2.077-.823zm.073.178c.674.297 1.146.484 1.84.73-.232.5-.814.871-1.36.63-.52-.228-.656-.86-.48-1.36z"/><path id="_399196640" class="fil1" d="m1.937 2.82-.74 1.676.178.079.74-1.677z"/><path id="_399195440" class="fil1" d="M1.626 4.58a.097.097 0 0 1-.078.177l-.6-.265a.097.097 0 0 1 .077-.178l.6.265z"/><path id="_399195224" class="fil1" d="M3.17 2.56c-.539-.003-.847-.173-1.063-.354-.173-.145-.34-.285-.637-.345l-.038.19c.318.689.43 1.077 1.654.722l.084-.213z"/></g></g></g><path style="fill:none" d="M0 0h6.827v6.827H0z"/></svg>
-                ¡Te esperamos!</p>
-            <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                  </svg>
-                <strong>Nota:</strong>
-                Para garantizar que todos disfruten plenamente de este momento especial, agradecemos su comprensión en que el evento será exclusivamente para adultos. ¡Gracias por su apoyo y cariño!
-            </p>
-            <br><br>
-            <p id="countdown"></p>
-            <br><br>
-            <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=MjdzNW9jNWtkdHMwODZzMTY2aThpNTJ0MGcgajEwMDYxMDYwNzBtQG0&amp;tmsrc=j1006106070m%40gmail.com"><img border="0" src="https://calendar.google.com/calendar/images/ext/gc_button1_en.gif" alt="Google Calendar"></a>
-            <br><br>
-            <button class="btn" onclick="openPopup()">Confirmar asistencia</button>
+            <div class="mySlides fade">
+                <img src="https://i.postimg.cc/tCCFvKp7/patines.jpg" alt="Foto Novios 2">
+            </div>
+            <div class="mySlides fade">
+                 <img src="https://i.postimg.cc/26VPxcyt/02SAI.jpg" alt="Foto Novios 3">
+            </div>
+             <div class="mySlides fade">
+                <img src="https://i.postimg.cc/Y9Wd9Jht/4.jpg" alt="Foto Novios 4">
+            </div>
+             <div class="mySlides fade">
+                <img src="https://i.postimg.cc/CMC4QC8r/collage.jpg" alt="Foto Novios 5">
+            </div>
         </div>
-    </div>
 
-    <div id="popup" class="popup hidden">
-        <h3>Confirmar asistencia</h3>
+        <main class="content">
+            <h2>Celebra con Nosotros</h2>
+            <p>
+                Con gran alegría queremos compartir este momento tan especial e invitarlos a celebrar nuestra unión.
+            </p>
+
+            <hr>
+
+            <h3>Detalles del Evento</h3>
+            <p class="info-item">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Domingo, 14 de diciembre de 2025</span>
+            </p>
+            <p class="info-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>05:00 p.m.</span>
+            </p>
+            <p class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>
+                    Tu Fiesta Campestre, Palmira
+                    <a href="https://maps.google.com/?q=Tu+Fiesta+Campestre,Palmira" target="_blank" title="Ver en Google Maps">(Ver Mapa)</a>
+                </span>
+            </p>
+
+            <div id="countdown"><i class="fa-solid fa-hourglass-half"></i>Cargando cuenta regresiva...</div>
+
+            <hr>
+
+            <section class="gift-section">
+                <h2>Lluvia de Sobres</h2>
+                <p>Su presencia es nuestro mejor regalo, pero si desean tener un detalle con nosotros, aquí encontrarán algunas opciones:</p>
+                <div class="gift-icons">
+                    <div class="gift-icon-container" id="openAccountInfo">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        <span>Efectivo / Transferencia</span>
+                    </div>
+                    <div class="gift-icon-container" id="openBancolombiaQr">
+                        <i class="fa-solid fa-qrcode"></i>
+                         <span>Bancolombia</span>
+                    </div>
+                    <div class="gift-icon-container" id="openDaviviendaAccount">
+                         <i class="fa-solid fa-building-columns"></i>
+                         <span>Davivienda</span>
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <section class="dress-code-section">
+                <h2>Código de Vestimenta</h2>
+                <p><strong>Formal</strong></p>
+                <p>¡Ayúdanos a destacar vistiendo tus mejores colores!</p>
+                <div class="color-restriction">
+                    <span>Evita por favor:</span>
+                    <div class="color-circle blue"></div>
+                    <div class="color-circle white"></div>
+                    <span>(Colores de los novios)</span>
+                </div>
+                 <p class="tie-restriction">
+                     <i class="fa-solid fa-times-circle"></i> No usar moño (corbatín).
+                 </p>
+            </section>
+
+            <hr>
+
+             <section class="confirmation-section">
+                <h2>Confirma tu Asistencia</h2>
+                <p>Por favor, confirma tu asistencia antes del 01 de noviembre del 2025 para ayudarnos con la organización.</p>
+                <button class="btn" onclick="openPopup()">Confirmar asistencia</button>
+                 <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MjdzNW9jNWtkdHMwODZzMTY2aThpNTJ0MGcgajEwMDYxMDYwNzBtQG0&tmsrc=j1006106070m%40gmail.com" class="gcal-button" title="Añadir a Google Calendar">
+                     <img border="0" src="https://calendar.google.com/calendar/images/ext/gc_button1_es.gif" alt="Añadir a Google Calendar">
+                 </a>
+            </section>
+
+        </main>
+        <section class="no-children-note">
+            <hr> <p>
+                <i class="fa-solid fa-circle-info"></i> Agradecemos tu comprensión, este evento está planeado solo para adultos.
+            </p>
+       </section>
+
+         <footer class="footer">
+            <p>¡Esperamos contar contigo!</p>
+            <p>&copy; 2025 Catalina & Juan</p>
+        </footer>
+
+    </div> <div id="popup" class="popup"> <h3>Confirmar asistencia</h3>
         <select id="nombre">
             <option value="">Seleccione su nombre</option>
-        </select>
-        <button class="btn" onclick="confirmAttendance()">Enviar</button>
-        <button class="btn" onclick="closePopup()">Cerrar</button>
-    </div>
-    <!-- Modal -->
-<div id="qrModal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="qr-container">
-            <a id="downloadQR" download="https://i.postimg.cc/HsZGcXgC/QR-BC.jpg">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="bottom: 30px;" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16" id="download-btn">
-                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-                  </svg>
-            </a>
-            <img src="https://i.postimg.cc/HsZGcXgC/QR-BC.jpg" id="qrImage" alt="Código QR">
+            </select>
+        <div class="btn-group">
+             <button class="btn" onclick="confirmAttendance()">Enviar Confirmación</button>
+             <button class="btn close-btn" onclick="closePopup()">Cerrar</button>
         </div>
     </div>
+
+    <div id="qrModalBancolombia" class="modal">
+        <div class="modal-content modal-qr">
+            <span class="close" onclick="closeModal('qrModalBancolombia')">&times;</span>
+            <h3>Código QR Bancolombia</h3>
+            <img src="https://i.postimg.cc/HsZGcXgC/QR-BC.jpg" id="qrImageBancolombia" alt="Código QR Bancolombia">
+            <a href="https://i.postimg.cc/HsZGcXgC/QR-BC.jpg" download="https://i.postimg.cc/HsZGcXgC/QR-BC.jpg" class="download-link">
+                <i class="fa-solid fa-download"></i> Descargar QR
+            </a>
+        </div>
+    </div>
+    <div id="accountModalDavivienda" class="modal"> <div class="modal-content modal-account">
+        <span class="close" onclick="closeModal('accountModalDavivienda')">×</span> <h3>Información Cuenta Davivienda</h3>
+         <p>Puedes realizar una transferencia a la siguiente cuenta Davivienda:</p>
+        <div class="account-info">
+            <span id="accountNumberDavivienda">016200706188</span> <button class="btn copy-btn" onclick="copyAccountNumber('accountNumberDavivienda', 'copyFeedbackDavivienda')">
+                 <i class="fa-solid fa-copy"></i> Copiar Número
+            </button>
+        </div>
+         <div class="copy-feedback" id="copyFeedbackDavivienda"></div> </div>
 </div>
 
+<!--    <div id="qrModalDavivienda" class="modal">
+        <div class="modal-content modal-qr">
+            <span class="close" onclick="closeModal('qrModalDavivienda')">&times;</span>
+            <h3>Código QR Davivienda</h3>
+            <img src="https://via.placeholder.com/300x300/2C6E9E/FFFFFF?text=QR+Davivienda" id="qrImageDavivienda" alt="Código QR Davivienda">
+             <a href="https://via.placeholder.com/300x300/2C6E9E/FFFFFF?text=QR+Davivienda" download="QR_Davivienda_Boda_Catalina_Juan.jpg" class="download-link">
+                 <i class="fa-solid fa-download"></i> Descargar QR
+             </a>
+        </div>
+    </div> -->
+
+    <div id="accountModal" class="modal">
+        <div class="modal-content modal-account">
+            <span class="close" onclick="closeModal('accountModal')">&times;</span>
+            <h3>Información Bancaria</h3>
+             <p>Puedes realizar una transferencia a la siguiente cuenta:</p>
+            <div class="account-info">
+                <span id="accountNumber">016200706188</span> <button class="btn copy-btn" onclick="copyAccountNumber('accountNumber', 'copyFeedback')"> <i class="fa-solid fa-copy"></i> Copiar Número
+                </button>
+            </div>
+             <div class="copy-feedback" id="copyFeedback"></div>
+        </div>
+    </div>
+
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        cargarInvitados(); // Cargar la lista de invitados al cargar la página
-        startCountdown();
-        const modal = document.getElementById("qrModal");
-        const openModalBtn = document.getElementById("openModal");
-        const closeModalBtn = document.querySelector(".close");
-        const qrImage = document.getElementById("qrImage");
-        const downloadBtn = document.getElementById("downloadQR");
-    // Configurar la imagen del QR
-    const qrPath = "https://i.postimg.cc/HsZGcXgC/QR-BC.jpg"; // Cambiar por la ruta de la imagen QR
-    qrImage.src = qrPath;
-    downloadBtn.href = qrPath;
+        // --- Slideshow ---
+        let slideIndex = 0;
+        showSlides(); // Iniciar slideshow al cargar
 
-    // Abrir el modal
-    openModalBtn.addEventListener("click", function () {
-        modal.classList.remove("hidden");
-        closeModalBtn.classList.remove("hidden");
-        qrImage.classList.remove("hidden");
-        downloadBtn.classList.remove("hidden");
-        modal.style.display = "flex";
+        function showSlides() {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          if (slides.length === 0) return; // Salir si no hay slides
 
-    });
-
-    // Cerrar el modal
-    closeModalBtn.addEventListener("click", function () {
-        modal.style.display = "none";
-    });
-
-    // Cerrar si se hace clic fuera del modal
-    window.addEventListener("click", function (e) {
-        if (e.target === modal) {
-            modal.style.display = "none";
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}
+          slides[slideIndex-1].style.display = "block";
+          slides[slideIndex-1].classList.add('fade'); // Asegurar animación
+          setTimeout(showSlides, 2000); // Cambiar imagen cada 2 segundos (como solicitado)
         }
-    });
-    });
+
+        // --- Cuenta Regresiva ---
+        function startCountdown() {
+            const targetDate = new Date("December 14, 2025 17:00:00").getTime(); // 5 PM
+            const countdownElement = document.getElementById("countdown");
+
+            function updateCountdown() {
+                if (!countdownElement) return; // Salir si el elemento no existe
+
+                const now = new Date().getTime();
+                const timeLeft = targetDate - now;
+
+                if (timeLeft <= 0) {
+                    countdownElement.innerHTML = "¡Llegó el gran día! 🎉";
+                    if(typeof countdownInterval !== 'undefined') clearInterval(countdownInterval); // Detener intervalo si existe
+                    return;
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML =
+                    `<i class="fa-solid fa-hourglass-half"></i> Faltan: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            updateCountdown(); // Ejecutar inmediatamente
+            const countdownInterval = setInterval(updateCountdown, 1000); // Actualizar cada segundo
+        }
+
+        // --- Confirmación de Asistencia (Popup) ---
         function openPopup() {
-            document.getElementById("popup").classList.remove("hidden");
+            const popup = document.getElementById("popup");
+            if (popup) popup.style.display = "block"; // Mostrar popup
         }
 
         function closePopup() {
-            document.getElementById("popup").classList.add("hidden");
+            const popup = document.getElementById("popup");
+            if (popup) popup.style.display = "none"; // Ocultar popup
         }
-        
+
         function cargarInvitados() {
-    fetch('https://script.google.com/macros/s/AKfycby7YbSc7SNzOKmc50us-S43q5iQfJPBqTMB0RmnF7i8qwC1467I1MC1i9E4qijx4HdA8g/exec?accion=obtenerInvitados')
-    .then(response => response.json())
-    .then(data => {
-        let select = document.querySelector("#popup select#nombre");
-        select.innerHTML = "<option value=''>Seleccione su nombre</option>";
-        data.forEach(nombre => {
-            let option = document.createElement("option");
-            option.value = nombre;
-            option.textContent = nombre;
-            select.appendChild(option);
-        });
-    })
-    .catch(error => console.error("Error al cargar invitados:", error));
-    }
-    function openInvitation_() {
-    let flap = document.querySelector(".flap");
-    let letter = document.querySelector(".letter");
-    let envelope = document.querySelector(".envelope-container");
-    let envelope_ = document.querySelector('.e-container');
-    let invitation = document.querySelector('.invitation');
-    envelope.classList.add('show');
-    invitation.classList.add('hidden');
-    envelope.classList.remove('hidden');
-    envelope.classList.add("clicked");
-    // Abre la tapa del sobre
-    flap.style.transform = "rotateX(180deg)";
+            // URL de Google Apps Script para obtener la lista
+            const url = 'https://script.google.com/macros/s/AKfycby7YbSc7SNzOKmc50us-S43q5iQfJPBqTMB0RmnF7i8qwC1467I1MC1i9E4qijx4HdA8g/exec?accion=obtenerInvitados';
 
-    // Muestra la carta con efecto de deslizamiento
-    setTimeout(() => {
-        letter.style.opacity = "1";
-        letter.style.transform = "translate(-50%, 0)";
-    }, 500);
+            fetch(url)
+            .then(response => {
+                if (!response.ok) { throw new Error('Network response was not ok'); }
+                return response.json();
+             })
+            .then(data => {
+                let select = document.querySelector("#popup select#nombre");
+                if (!select) return; // Salir si el select no existe
 
-    // Opcional: Ocultar el sobre después de abrir
-    setTimeout(() => {
-        envelope.style.display = "none";
-    }, 2000);
-}
-
-    function openInvitation() {
-        /*
-         <div class="e-container hidden">
-        <div class="envelope-container hidden" id="opening-card" onclick="openInvitation()">
-            <div class="flap"></div>
-            <div class="body"></div>
-        </div>
-    </div>
-        */
-    let envelope = document.querySelector('.e-container');
-    let evelop_ = document.querySelector('.envelope-container');
-    let invitation = document.querySelector('.invitation');
-    envelope.classList.add('show');
-    invitation.classList.add('hidden');
-    envelope.classList.remove('hidden');
-    envelope.classList.add("clicked");
-    setTimeout(() => {
-        envelope.classList.add('hidden'); // Oculta el sobre
-        evelop_.classList.add('hidden'); // Oculta el sobre
-        envelope.classList.remove('show'); // Oculta el sobre
-        evelop_.classList.remove('show'); // Oculta el sobre
-        invitation.classList.remove('hidden'); // Muestra la invitación
-        invitation.classList.add('show'); // Muestra la invitación
-    }, 1000); // Tiempo suficiente para la animación de apertura
-}
-
-
-        function closeInvitation() {
-            document.getElementById("invitation").classList.remove("show");
-            setTimeout(() => {
-                document.querySelector(".envelope-container").classList.remove("show");
-            }, 500);
+                select.innerHTML = "<option value=''>Seleccione su nombre</option>"; // Opción por defecto
+                if (Array.isArray(data)) {
+                    data.forEach(nombre => {
+                        let option = document.createElement("option");
+                        option.value = nombre;
+                        option.textContent = nombre;
+                        select.appendChild(option);
+                    });
+                } else {
+                     console.error("Error: La respuesta de cargarInvitados no es un array:", data);
+                }
+            })
+            .catch(error => console.error("Error al cargar invitados:", error));
         }
-    function confirmAttendance() {
+
+        function confirmAttendance() {
         let nombre = document.getElementById("nombre").value.trim();
         if (nombre === "") {
             alert("Por favor ingrese su nombre.");
@@ -721,68 +880,99 @@ select, input {
         })
         .then(response => response.text())
         .then(data => {
+            nombre.value="";
             alert("¡Asistencia confirmada! Gracias por responder.");
             closePopup();
         })
-        .catch(error => console.error('Error:', error));
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-    let slides = document.querySelectorAll(".slide");
-    let index = 0;
-
-    function nextSlide() {
-        slides[index].classList.remove("active");
-        index = (index + 1) % slides.length;
-        slides[index].classList.add("active");
-    }
-
-    setInterval(nextSlide, 3000); // Cambia cada 3 segundos
-});
-
-function showInvitation() {
-    document.getElementById("opening-card").classList.add("hidden");
-    document.getElementById("invitation").classList.remove("hidden");
-}
-let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 3000); // Change image every 2 seconds
-}
-
-function startCountdown() {
-    const targetDate = new Date("December 14, 2025 00:00:00").getTime();
-
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const timeLeft = targetDate - now;
-
-        if (timeLeft <= 0) {
-            document.getElementById("countdown").innerHTML = "¡Llegó el gran día! 🎉";
-            clearInterval(countdownInterval);
-            return;
+             .catch(error => {
+                  console.error('Error al confirmar asistencia:', error);
+                  alert("Hubo un error al confirmar. Por favor, inténtelo de nuevo.");
+             })
+             .finally(() => {
+                 // Restaurar botón
+                 submitButton.textContent = originalButtonText;
+                 submitButton.disabled = false;
+             });
         }
 
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        // --- Modales (QR y Cuenta) ---
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.style.display = "flex"; // Usar flex para centrar
+        }
 
-        document.getElementById("countdown").innerHTML =
-            `⏳ Faltan: ${days} días, ${hours}h ${minutes}m ${seconds}s`;
+        function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) modal.style.display = "none";
+
+        // Limpiar feedback de copia al cerrar cualquier modal de cuenta
+        let feedbackId = '';
+        if (modalId === 'accountModal') {
+             feedbackId = 'copyFeedback';
+        } else if (modalId === 'accountModalDavivienda') { // AÑADIDO
+             feedbackId = 'copyFeedbackDavivienda'; // AÑADIDO
+        }
+
+        if (feedbackId) {
+            const feedback = document.getElementById(feedbackId);
+            if (feedback) feedback.textContent = '';
+        }
     }
 
-    updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
-}
+         // Cerrar modal si se hace clic fuera del contenido
+        window.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                 if (event.target == modal) {
+                      closeModal(modal.id);
+                 }
+            });
+        });
+
+       // --- Copiar Número de Cuenta (Modificada para ser reutilizable) ---
+    function copyAccountNumber(numberId, feedbackId) {
+        const accountNumberElement = document.getElementById(numberId);
+        const feedbackElement = document.getElementById(feedbackId);
+        if (!accountNumberElement || !feedbackElement) {
+             console.error("Elementos no encontrados para copiar:", numberId, feedbackId);
+             return;
+        }
+
+        const accountNumber = accountNumberElement.textContent || accountNumberElement.innerText;
+
+        navigator.clipboard.writeText(accountNumber)
+            .then(() => {
+                feedbackElement.textContent = '¡Número copiado!';
+                feedbackElement.style.color = 'green'; // Asegurar color verde
+                // Opcional: Limpiar mensaje después de unos segundos
+                setTimeout(() => { feedbackElement.textContent = ''; }, 3000);
+            })
+            .catch(err => {
+                console.error('Error al copiar el número: ', err);
+                feedbackElement.textContent = 'Error al copiar';
+                feedbackElement.style.color = 'red'; // Indicar error
+            });
+    }
+
+        // --- Inicialización al Cargar la Página ---
+        document.addEventListener("DOMContentLoaded", function() {
+            cargarInvitados(); // Cargar lista para el popup
+            startCountdown(); // Iniciar cuenta regresiva
+
+         // Asignar eventos para abrir modales
+        const btnBancolombia = document.getElementById('openBancolombiaQr');
+        const btnDavivienda = document.getElementById('openDaviviendaAccount'); // ID CAMBIADO
+        const btnAccountInfo = document.getElementById('openAccountInfo');
+
+        if(btnBancolombia) btnBancolombia.onclick = () => openModal('qrModalBancolombia');
+        if(btnDavivienda) btnDavivienda.onclick = () => openModal('accountModalDavivienda'); // ID DE MODAL CAMBIADO
+        if(btnAccountInfo) btnAccountInfo.onclick = () => openModal('accountModal');
+
+             // Asegurarse de que el popup de confirmación esté oculto al inicio
+             closePopup();
+        });
+
     </script>
+
 </body>
 </html>
